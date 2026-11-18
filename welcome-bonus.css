@@ -79,6 +79,120 @@ welcome-bonus img {
   font-style: normal;
 }
 
+/* =============== Buttons */
+.wb-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 280px;
+  max-width: 100%;
+  height: 52px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  color: #e7e7e7;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 0.9;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: filter 0.2s ease;
+}
+
+.wb-button:hover {
+  filter: brightness(1.12);
+}
+
+.wb-button:focus-visible {
+  outline: 2px solid var(--wb-color-text);
+  outline-offset: 3px;
+}
+
+.wb-button--green {
+  background: var(--wb-gradient-green);
+}
+
+.wb-button--pink {
+  background: var(--wb-gradient-pink);
+}
+
+.wb-icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+/* =============HERO styles start here */
+.wb-hero {
+  margin-bottom: 56px;
+  text-align: center;
+}
+
+.wb-hero__title {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.wb-hero__subtitle {
+  max-width: 760px;
+  margin: 12px auto 0;
+  color: var(--wb-color-text-muted);
+  font-size: 20px;
+}
+
+/* ========== Summary cards ========== */
+.wb-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.wb-summary__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 118px;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--wb-gradient-summary);
+  text-align: center;
+}
+
+.wb-summary__value {
+  background: var(--wb-gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: var(--wb-glow-gold);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.wb-summary__label {
+  color: var(--wb-color-text-label);
+  font-size: 16px;
+}
+
+.wb-summary__item--highlighted {
+  background: var(--wb-color-pink);
+}
+
+.wb-summary__item--highlighted .wb-summary__value {
+  background: none;
+  color: var(--wb-color-text);
+  filter: none;
+}
+
+.wb-summary__item--highlighted .wb-summary__label {
+  color: var(--wb-color-text);
+}
+
+
 
 /* ===== Mobile (Responsive) */
 @media (max-width: 767px) {
