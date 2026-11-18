@@ -8,6 +8,7 @@
   "hero": {
     "image": "/images/hero.png",
     "title": "დაიწყე თამაში 100 ფრისპინით!",
+    "titleHighlight": "100 ფრისპინით!",
     "subtitle": "დარეგისტრირდი და მიიღე საჩუქარი ექსკლუზიურ სლოტში AMBASSADOR VAMPIRE NIGHT!"
   },
   "summary": [
@@ -22,7 +23,8 @@
     "image": "/images/vampire-night.png",
     "freespins": 100,
     "game": "Ambassadori Vampire Night",
-    "button": "დარეგისტრირდი"
+    "button": "დარეგისტრირდი",
+    "url": "#register"
   },
   "deposit": {
     "title": "შეიტანე დეპოზიტი და მიიღე მეტი!",
@@ -30,6 +32,8 @@
     "freespins": 100,
     "game": "Ambassadori Vampire Night",
     "button": "დეპოზიტი",
+    "url": "#deposit",
+    "currency": "₾",
     "tiers": [
       { "from": 10, "to": 24.99, "freespins": 10 },
       { "from": 25, "to": 49.99, "freespins": 25 },
@@ -38,7 +42,9 @@
     ]
   },
   "missions": {
+    "sectionTitle": "შეასრულე მისიები და მიიღე საჩუქრები!",
     "title": "შეასრულე პროგრესი და მიიღე დამატებითი პრიზები",
+    "titleHighlight": "დამატებითი პრიზები",
     "progress": { "current": 250, "currency": "₾" },
     "milestones": [
       { "amount": 500, "reward": 100, "rewardIcon": "/images/reward-icon.png" },
@@ -50,11 +56,28 @@
       { "id": "buffalo-king", "name": "Buffalo King Megaways", "image": "/images/slots/buffalo-king.png" },
       { "id": "10-dazzling-hot", "name": "10 Dazzling Hot", "image": "/images/slots/dazzling-hot.png" }
     ],
-    "button": "ყველა სლოტის ნახვა"
+    "button": "ყველა სლოტის ნახვა",
+    "buttonUrl": "#slots"
   },
   "rules": [
     { "title": "დაწყება/დამთავრება", "body": "აქცია მოქმედებს 1 დეკემბრიდან 31 დეკემბრამდე." },
     { "title": "აქციის პირობები", "body": "ფრისპინები ირიცხება ახალ მოთამაშეებზე." },
     { "title": "წესები და პირობები", "body": "სრული წესები იხილეთ საიტზე." }
-  ]
+  ],
+  "labels": {
+    "freespin": "Freespin",
+    "fs": "FS",
+    "tierAmount": "დეპოზიტის თანხა",
+    "tierReward": "შენი საჩუქარი",
+    "tierOrMore": "და მეტი",
+    "countdownTitle": "აქციის დასრულებამდე",
+    "countdownEnded": "აქცია დასრულდა",
+    "days": "დღე",
+    "hours": "საათი",
+    "minutes": "წუთი",
+    "seconds": "წამი",
+    "progress": "პროგრესი",
+    "reward": "საჩუქარი",
+    "rulesTitle": "წესები და პირობები"
+  }
 }
