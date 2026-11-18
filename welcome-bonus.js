@@ -9,7 +9,7 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
-// to wrap highlighted(pink) part of title in span
+// to wrap highlighted(pink) part of title in semantic em
 function highlight(text, part) {
   const safeText = escapeHtml(text);
   if (!part || !text.includes(part)) return safeText;
