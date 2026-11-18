@@ -1,0 +1,88 @@
+/* ========== Colors and main styles */
+welcome-bonus {
+  --wb-color-page: #0b0112;
+  --wb-color-card: hsl(270deg 82% 9.4% / 0.5);
+  --wb-color-card-border: #491790;
+  --wb-gradient-summary: linear-gradient(275deg, #260943 0.06%, #1d0238 76.29%);
+  --wb-color-pink: #cf167d;
+  --wb-color-accent: #ed198f;
+  --wb-gradient-green: linear-gradient(163.37deg, #009927 48%, #0c872c 94.6%);
+  --wb-gradient-pink: linear-gradient(163.37deg, #cf167d 52.73%, #790847 99.34%);
+  --wb-gradient-gold: linear-gradient(90deg, #eb7a01 0%, #fbed01 100%);
+  --wb-glow-gold: drop-shadow(0 0 4px rgb(241 167 1 / 0.7));
+  --wb-color-text: #f5f7f9;
+  --wb-color-text-muted: #cacaca;
+  --wb-color-text-label: #a89cb3;
+  --wb-color-row: #300858;
+  --wb-color-row-top: #400b76;
+  --wb-color-panel: #140127;
+  --wb-color-countdown: #3d1d5d;
+  --wb-color-track: #371a54;
+  --wb-gradient-progress: linear-gradient(90deg, #782a6e, #b53c91);
+  --wb-color-badge: #dadada;
+  --wb-color-slots-bg: #2f062e;
+  --wb-color-rule: #13081e;
+
+  --wb-radius-card: 24px;
+  --wb-radius-small: 12px;
+  --wb-container: 1120px;
+  --wb-font: "Noto Sans Ambassadori", "Noto Sans Georgian", "Noto Sans", Arial, sans-serif;
+
+  display: block;
+  min-height: 100vh;
+  background-color: var(--wb-color-page);
+  background-image: var(--wb-bg-desktop);
+  background-position: top center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  color: var(--wb-color-text);
+  font-family: var(--wb-font);
+  line-height: 1.4;
+}
+
+
+/* ======== Scoped reset (only inside component)  */
+welcome-bonus *,
+welcome-bonus *::before,
+welcome-bonus *::after {
+  box-sizing: border-box;
+}
+
+welcome-bonus :where(h1, h2, h3, p, ul, table) {
+  margin: 0;
+  padding: 0;
+}
+
+welcome-bonus ul {
+  list-style: none;
+}
+
+welcome-bonus img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ======Layout starts here */
+.wb-hero-space {
+  aspect-ratio: 1920 / 830;
+}
+
+.wb-container {
+  max-width: calc(var(--wb-container) + 32px);
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+.wb-accent {
+  color: var(--wb-color-accent);
+  font-style: normal;
+}
+
+
+/* ===== Mobile (Responsive) */
+@media (max-width: 767px) {
+  welcome-bonus {
+    background-image: var(--wb-bg-mobile);
+  }
+}

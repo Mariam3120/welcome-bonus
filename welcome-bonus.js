@@ -14,7 +14,7 @@ function highlight(text, part) {
   const safeText = escapeHtml(text);
   if (!part || !text.includes(part)) return safeText;
   const safePart = escapeHtml(part);
-  return safeText.replace(safePart, () => `<span class="wb-accent">${safePart}</span>`);
+  return safeText.replace(safePart, () => `<em class="wb-accent">${safePart}</em>`);
 }
 
 // for formatting number -> "1 000"
