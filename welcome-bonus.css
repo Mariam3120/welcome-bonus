@@ -13,6 +13,7 @@ welcome-bonus {
   --wb-color-text: #f5f7f9;
   --wb-color-text-muted: #cacaca;
   --wb-color-text-label: #a89cb3;
+  --wb-color-text-soft: rgb(255 255 255 / 0.6);
   --wb-color-row: #300858;
   --wb-color-row-top: #400b76;
   --wb-color-panel: #140127;
@@ -141,16 +142,16 @@ welcome-bonus img {
   font-size: 20px;
 }
 
-/* ========== Summary cards ========== */
+/* ======= Summary cards styles start here */
 .wb-summary {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: 16px;
   margin-bottom: 56px;
 }
 
 .wb-summary__item {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -175,10 +176,12 @@ welcome-bonus img {
 
 .wb-summary__label {
   color: var(--wb-color-text-label);
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .wb-summary__item--highlighted {
+  flex-grow: 0.7;
   background: var(--wb-color-pink);
 }
 
@@ -189,7 +192,7 @@ welcome-bonus img {
 }
 
 .wb-summary__item--highlighted .wb-summary__label {
-  color: var(--wb-color-text);
+  color: var(--wb-color-text-soft);
 }
 
 
