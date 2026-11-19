@@ -151,23 +151,31 @@ function renderCountdown(labels) {
 }
 
 function renderProgress(missions, labels) {
+  // const { current, currency } = missions.progress;
+  // const max = Math.max(...missions.milestones.map((m) => m.amount));
+  // const percent = Math.min((current / max) * 100, 100);
   const { current, currency } = missions.progress;
   const max = Math.max(...missions.milestones.map((m) => m.amount));
-  const percent = Math.min((current / max) * 100, 100);
+
+  // The last milestone sits at 95%, so the track continues a bit past it (as in the design)
+  const SCALE_END = 95;
+  const toPercent = (amount) => (amount / max) * SCALE_END;
+  const percent = current >= max ? 100 : toPercent(current);
+
 
   const amounts = missions.milestones.map((m) => `
-    <span class="wbl-progress__mark" style="left: ${(m.amount / max) * 100}%">
+    <span class="wbl-progress__mark" style="left: ${toPercent(m.amount)}%">
       ${formatNumber(m.amount)}${escapeHtml(currency)}
     </span>`).join('');
 
   const rewards = missions.milestones.map((m) => `
-    <span class="wbl-progress__mark" style="left: ${(m.amount / max) * 100}%">
-      ${escapeHtml(m.reward)}
+    <span class="wbl-progress__mark" style="left: ${toPercent(m.amount)}%">
+      <span class="wbl-progress__reward">${escapeHtml(m.reward)}</span>
       <img class="wbl-progress__icon" src="${escapeHtml(m.rewardIcon)}" alt="${escapeHtml(labels.fs)}">
     </span>`).join('');
 
   const ticks = missions.milestones.map((m) => `
-    <span class="wbl-progress__tick" style="left: ${(m.amount / max) * 100}%"></span>`).join('');
+    <span class="wbl-progress__tick" style="left: ${toPercent(m.amount)}%"></span>`).join('');
 
    return `
     <div class="wbl-progress">

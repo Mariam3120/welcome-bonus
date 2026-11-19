@@ -9,7 +9,7 @@ welcome-bonus {
     #1d0238 76.29%
   );
   --wbl-color-pink: #cf167d;
-  --wbl-color-badge-pink: #9a1a5f;
+  --wbl-color-pink-dark: #9a1a5f;
   --wbl-color-accent: #ed198f;
   --wbl-gradient-green: linear-gradient(163.37deg, #009927 48%, #0c872c 94.6%);
   --wbl-gradient-pink: linear-gradient(
@@ -26,16 +26,34 @@ welcome-bonus {
   --wbl-color-row: #300858;
   --wbl-color-row-top: #400b76;
   --wbl-color-panel: #140127;
-  /* --wbl-color-countdown: #3d1d5d; */
-  --wbl-gradient-countdown: linear-gradient(180deg, #2b1442 0%, #431f66 100%);
+  --wbl-gradient-panel: linear-gradient(180deg, #2b1442 0%, #431f66 100%);
   --wbl-gradient-badge: linear-gradient(90deg, #a5a3a1, #dadada 50%, #a5a3a1);
   --wbl-color-badge-text: #2b1442;
   --wbl-color-tick: rgb(207 22 125 / 0.4);
   --wbl-color-track: #371a54;
   --wbl-gradient-progress: linear-gradient(90deg, #782a6e, #b53c91);
-  /* --wbl-color-badge: #dadada; */
   --wbl-color-slots-bg: #2f062e;
   --wbl-color-rule: #13081e;
+  --wbl-color-gold: #fae301;
+  --wbl-color-badge-border: #9b9b9b;
+  --wbl-color-border-soft: rgb(73 23 144 / 0.2);
+  --wbl-gradient-slots-border: linear-gradient(
+    90deg,
+    #cf167d,
+    rgb(207 22 125 / 0.15)
+  );
+
+  --wbl-gradient-progress-panel: linear-gradient(90deg, #140127, #250941);
+  --wbl-gradient-track: linear-gradient(90deg, #2b1442 0%, #431f66 100%);
+  --wbl-gradient-badge: linear-gradient(
+    90deg,
+    #989595,
+    #fbfbfb 30%,
+    #fbfbfb 70%,
+    #989595
+  );
+  --wbl-color-badge-border: #8d8d8d;
+  --wbl-color-badge-text: #1c2c4f;
 
   --wbl-radius-card: 40px;
   --wbl-radius-small: 12px;
@@ -372,7 +390,7 @@ welcome-bonus img {
   margin: 22px auto 24px;
   padding: 12px 24px 10px;
   border-radius: 999px;
-  background: var(--wbl-gradient-countdown);
+  background: var(--wbl-gradient-panel);
 }
 
 .wbl-countdown__label {
@@ -382,13 +400,12 @@ welcome-bonus img {
   transform: translateX(-50%);
   padding: 2px 8px;
   border-radius: 999px;
-  background: var(--wbl-color-badge-pink);
+  background: var(--wbl-color-pink-dark);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
   white-space: nowrap;
 }
-
 
 .wbl-countdown__units {
   display: flex;
@@ -424,13 +441,15 @@ welcome-bonus img {
   line-height: 1;
 }
 
-/* ============Progress */
+/* =============PROGRESS */
 .wbl-progress {
+  isolation: isolate;
   display: grid;
-  gap: 10px;
-  padding: 12px;
+  gap: 12px;
+  padding: 16px 12px;
+  border: 1px solid var(--wbl-color-border-soft);
   border-radius: var(--wbl-radius-small);
-  background: var(--wbl-color-panel);
+  background: var(--wbl-gradient-progress-panel);
 }
 
 .wbl-progress__row {
@@ -439,13 +458,13 @@ welcome-bonus img {
 }
 
 .wbl-progress__label {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .wbl-progress__marks {
   position: absolute;
-  inset: 0 24px;
+  inset: 0 36px;
 }
 
 .wbl-progress__mark {
@@ -455,17 +474,16 @@ welcome-bonus img {
   align-items: center;
   gap: 4px;
   transform: translateX(-50%);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   white-space: nowrap;
 }
 
-.wbl-progress__mark:last-child {
-  transform: translateX(-100%);
-}
-
-.wbl-progress__marks--rewards {
-  color: var(--wbl-color-yellow-bright);
+.wbl-progress__reward {
+  background: var(--wbl-gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .wbl-progress__icon {
@@ -475,10 +493,13 @@ welcome-bonus img {
 
 .wbl-progress__track {
   position: relative;
-  height: 20px;
-  margin: 0 24px;
-  border-radius: 999px;
-  background: var(--wbl-color-track);
+  height: 24px;
+  margin: 0 36px;
+  padding: 5px;
+  border: 1px solid var(--wbl-color-pink-dark);
+  border-radius: 13px;
+  background: var(--wbl-gradient-track);
+  box-shadow: inset 0 4px 4px rgb(0 0 0 / 0.25);
 }
 
 .wbl-progress__fill {
@@ -487,25 +508,32 @@ welcome-bonus img {
   background: var(--wbl-gradient-progress);
 }
 
+/* tick lines go behind the badge(z-index) and comes out the badge by -12px, both sides like ruler */
 .wbl-progress__tick {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  transform: translateX(-50%);
-  background: var(--wbl-color-tick);
+  z-index: -1;
+  top: -12px;
+  bottom: -12px;
+  width: 1px;
+  background: var(--wbl-color-pink-dark);
 }
 
 .wbl-progress__badge {
   position: absolute;
   top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 38px;
   transform: translate(-50%, -50%);
-  padding: 4px 16px;
   border-radius: 999px;
   background: var(--wbl-gradient-badge);
+  border: 3px solid var(--wbl-color-badge-border);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.3);
   color: var(--wbl-color-badge-text);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -517,9 +545,12 @@ welcome-bonus img {
   padding: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  border: 1px solid var(--wbl-color-pink);
   border-radius: 16px;
-  background: var(--wbl-color-slots-bg);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--wbl-color-slots-bg), var(--wbl-color-slots-bg))
+      padding-box,
+    var(--wbl-gradient-slots-border) border-box;
   scrollbar-color: var(--wbl-color-pink) transparent;
   scrollbar-width: thin;
 }

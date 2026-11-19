@@ -54,7 +54,12 @@
       { "id": "gates-of-olympus", "name": "Gates of Olympus", "image": "/images/slots/olympus.png" },
       { "id": "40-shining-crown", "name": "40 Shining Crown", "image": "/images/slots/shining-crown.png" },
       { "id": "buffalo-king", "name": "Buffalo King Megaways", "image": "/images/slots/buffalo-king.png" },
-      { "id": "10-dazzling-hot", "name": "10 Dazzling Hot", "image": "/images/slots/dazzling-hot.png" }
+      { "id": "10-dazzling-hot", "name": "10 Dazzling Hot", "image": "/images/slots/dazzling-hot.png" },
+      { "id": "gates-of-olympus-2", "name": "Gates of Olympus", "image": "/images/slots/olympus.png" },
+      { "id": "40-shining-crown-2", "name": "40 Shining Crown", "image": "/images/slots/shining-crown.png" },
+      { "id": "buffalo-king-2", "name": "Buffalo King Megaways", "image": "/images/slots/buffalo-king.png" },
+      { "id": "10-dazzling-hot-2", "name": "10 Dazzling Hot", "image": "/images/slots/dazzling-hot.png" }
+
     ],
     "button": "ყველა სლოტის ნახვა",
     "buttonUrl": "#slots"
