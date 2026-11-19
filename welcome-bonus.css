@@ -33,8 +33,9 @@ welcome-bonus {
   --wbl-color-track: #371a54;
   --wbl-gradient-progress: linear-gradient(90deg, #782a6e, #b53c91);
   --wbl-color-slots-bg: #2f062e;
-  --wbl-color-rule: #13081e;
+  --wbl-color-rule: rgb(19 8 30 / 0.6);
   --wbl-color-badge-border: #9b9b9b;
+ --wbl-color-border-glass: rgb(255 255 255 / 0.08);
   --wbl-color-border-soft: rgb(73 23 144 / 0.2);
   --wbl-gradient-slots-border: linear-gradient(
     90deg,
@@ -601,6 +602,60 @@ welcome-bonus img {
   aspect-ratio: 240 / 135;
   object-fit: cover;
   border-radius: var(--wbl-radius-small);
+}
+
+/* ===============RULES */
+.wbl-rules__title {
+  margin-bottom: 16px;
+  padding-left: 14px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.wbl-rule {
+  margin-bottom: 14px;
+  border: 1px solid var(--wbl-color-border-glass);
+  border-radius: 20px;
+  background: var(--wbl-color-rule);
+  backdrop-filter: blur(8px);
+}
+
+.wbl-rule__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 56px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  list-style: none;
+  color: var(--wbl-color-text-muted);
+}
+
+/* hide the default triangle (Safari) */
+.wbl-rule__title::-webkit-details-marker {
+  display: none;
+}
+
+.wbl-rule__title:focus-visible {
+  border-radius: inherit;
+  outline: 2px solid var(--wbl-color-text);
+  outline-offset: 2px;
+}
+
+.wbl-rule__chevron {
+  transition: transform 0.2s ease;
+}
+
+.wbl-rule[open] .wbl-rule__chevron {
+  transform: rotate(180deg);
+}
+
+.wbl-rule__body {
+  padding: 0 24px 16px;
+  color: var(--wbl-color-text-muted);
+  font-size: 15px;
 }
 
 /* ===== Mobile (Responsive) */
