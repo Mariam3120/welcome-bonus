@@ -145,7 +145,7 @@ function renderCountdown(labels) {
 
   return `
     <div class="wbl-countdown" role="timer">
-      <span class="wbl-countdown__label" data-countdown-label>${escapeHtml(labels.countdownTitle)}</span>
+      <span class="wbl-countdown__label" data-caps data-countdown-label>${escapeHtml(labels.countdownTitle)}</span>
       <div class="wbl-countdown__units">${cells}</div>
     </div>`;
 }
@@ -169,10 +169,12 @@ function renderProgress(missions, labels) {
   const ticks = missions.milestones.map((m) => `
     <span class="wbl-progress__tick" style="left: ${(m.amount / max) * 100}%"></span>`).join('');
 
-  return `
+   return `
     <div class="wbl-progress">
-      <span class="wbl-progress__label">${escapeHtml(labels.progress)}</span>
-      <div class="wbl-progress__marks">${amounts}</div>
+      <div class="wbl-progress__row">
+        <span class="wbl-progress__label" data-caps>${escapeHtml(labels.progress)}</span>
+        <div class="wbl-progress__marks">${amounts}</div>
+      </div>
 
       <div class="wbl-progress__track"
            role="progressbar"
@@ -185,9 +187,12 @@ function renderProgress(missions, labels) {
         <span class="wbl-progress__badge" style="left: ${percent}%">+${formatNumber(current)}${escapeHtml(currency)}</span>
       </div>
 
-      <span class="wbl-progress__label">${escapeHtml(labels.reward)}</span>
-      <div class="wbl-progress__marks">${rewards}</div>
+      <div class="wbl-progress__row">
+        <span class="wbl-progress__label" data-caps>${escapeHtml(labels.reward)}</span>
+        <div class="wbl-progress__marks wbl-progress__marks--rewards">${rewards}</div>
+      </div>
     </div>`;
+
 }
 
 function renderSlots(slots) {

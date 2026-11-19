@@ -3,11 +3,20 @@ welcome-bonus {
   --wbl-color-page: #0b0112;
   --wbl-color-card: hsl(270deg 82% 9.4% / 0.5);
   --wbl-color-card-border: #491790;
-  --wbl-gradient-summary: linear-gradient(275deg, #260943 0.06%, #1d0238 76.29%);
+  --wbl-gradient-summary: linear-gradient(
+    275deg,
+    #260943 0.06%,
+    #1d0238 76.29%
+  );
   --wbl-color-pink: #cf167d;
+  --wbl-color-badge-pink: #9a1a5f;
   --wbl-color-accent: #ed198f;
   --wbl-gradient-green: linear-gradient(163.37deg, #009927 48%, #0c872c 94.6%);
-  --wbl-gradient-pink: linear-gradient(163.37deg, #cf167d 52.73%, #790847 99.34%);
+  --wbl-gradient-pink: linear-gradient(
+    163.37deg,
+    #cf167d 52.73%,
+    #790847 99.34%
+  );
   --wbl-gradient-gold: linear-gradient(90deg, #eb7a01 0%, #fbed01 100%);
   --wbl-glow-gold: drop-shadow(0 0 4px rgb(241 167 1 / 0.7));
   --wbl-color-text: #f5f7f9;
@@ -17,17 +26,23 @@ welcome-bonus {
   --wbl-color-row: #300858;
   --wbl-color-row-top: #400b76;
   --wbl-color-panel: #140127;
-  --wbl-color-countdown: #3d1d5d;
+  /* --wbl-color-countdown: #3d1d5d; */
+  --wbl-gradient-countdown: linear-gradient(180deg, #2b1442 0%, #431f66 100%);
+  --wbl-gradient-badge: linear-gradient(90deg, #a5a3a1, #dadada 50%, #a5a3a1);
+  --wbl-color-badge-text: #2b1442;
+  --wbl-color-tick: rgb(207 22 125 / 0.4);
   --wbl-color-track: #371a54;
   --wbl-gradient-progress: linear-gradient(90deg, #782a6e, #b53c91);
-  --wbl-color-badge: #dadada;
+  /* --wbl-color-badge: #dadada; */
   --wbl-color-slots-bg: #2f062e;
   --wbl-color-rule: #13081e;
 
   --wbl-radius-card: 40px;
   --wbl-radius-small: 12px;
   --wbl-container: 1120px;
-  --wbl-font: "Noto Sans Ambassadori", "Noto Sans Georgian", "Noto Sans", Arial, sans-serif;
+  --wbl-font:
+    "Noto Sans Ambassadori", "Noto Sans Georgian", "Noto Sans", Arial,
+    sans-serif;
 
   display: block;
   min-height: 100vh;
@@ -40,7 +55,6 @@ welcome-bonus {
   font-family: var(--wbl-font);
   line-height: 1.4;
 }
-
 
 /* ======== Scoped reset (only inside component)  */
 welcome-bonus *,
@@ -97,7 +111,9 @@ welcome-bonus img {
   line-height: 0.9;
   text-decoration: none;
   white-space: nowrap;
-  transition: filter 0.15s ease, transform 0.15s;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s;
 }
 .wbl-button:active {
   transform: scale(0.99);
@@ -338,6 +354,187 @@ welcome-bonus img {
   color: transparent;
 }
 
+/* ==============Missions and mission btn */
+.wbl-missions .wbl-card__heading {
+  text-align: center;
+}
+
+.wbl-missions .wbl-button {
+  display: flex;
+  margin: 28px auto 0;
+}
+
+/* ==============Countdown timer */
+.wbl-countdown {
+  position: relative;
+  width: 420px;
+  max-width: 100%;
+  margin: 22px auto 24px;
+  padding: 12px 24px 10px;
+  border-radius: 999px;
+  background: var(--wbl-gradient-countdown);
+}
+
+.wbl-countdown__label {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--wbl-color-badge-pink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+
+.wbl-countdown__units {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.wbl-countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40px;
+}
+
+.wbl-countdown__value {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.wbl-countdown__name {
+  margin-top: 2px;
+  color: var(--wbl-color-text-label);
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.wbl-countdown__separator {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ============Progress */
+.wbl-progress {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: var(--wbl-radius-small);
+  background: var(--wbl-color-panel);
+}
+
+.wbl-progress__row {
+  position: relative;
+  min-height: 18px;
+}
+
+.wbl-progress__label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.wbl-progress__marks {
+  position: absolute;
+  inset: 0 24px;
+}
+
+.wbl-progress__mark {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.wbl-progress__mark:last-child {
+  transform: translateX(-100%);
+}
+
+.wbl-progress__marks--rewards {
+  color: var(--wbl-color-yellow-bright);
+}
+
+.wbl-progress__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.wbl-progress__track {
+  position: relative;
+  height: 20px;
+  margin: 0 24px;
+  border-radius: 999px;
+  background: var(--wbl-color-track);
+}
+
+.wbl-progress__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--wbl-gradient-progress);
+}
+
+.wbl-progress__tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--wbl-color-tick);
+}
+
+.wbl-progress__badge {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4px 16px;
+  border-radius: 999px;
+  background: var(--wbl-gradient-badge);
+  color: var(--wbl-color-badge-text);
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* =================Slots */
+.wbl-slots {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border: 1px solid var(--wbl-color-pink);
+  border-radius: 16px;
+  background: var(--wbl-color-slots-bg);
+  scrollbar-color: var(--wbl-color-pink) transparent;
+  scrollbar-width: thin;
+}
+
+.wbl-slots__item {
+  flex: 0 0 240px;
+  scroll-snap-align: start;
+}
+
+.wbl-slots__image {
+  width: 100%;
+  aspect-ratio: 240 / 135;
+  object-fit: cover;
+  border-radius: var(--wbl-radius-small);
+}
 
 /* ===== Mobile (Responsive) */
 @media (max-width: 767px) {
