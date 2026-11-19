@@ -289,6 +289,7 @@ class WelcomeBonus extends HTMLElement {
       this.render(data);
     } catch (error) {
       console.error('Could not load campaign:', error);
+      this.renderError();
     }
   }
 
@@ -312,6 +313,13 @@ class WelcomeBonus extends HTMLElement {
       this.startCountdown(data.endsAt, labels);
 
 
+  }
+
+  renderError() {
+    const message = this.getAttribute('error-text');
+    if (!message) return;
+
+    this.innerHTML = `<p class="wbl-error" role="alert">${escapeHtml(message)}</p>`;
   }
     startCountdown(endsAt, labels) {
     this.stopCountdown();

@@ -656,6 +656,16 @@ welcome-bonus img {
   font-size: 15px;
 }
 
+/* =============== Error state */
+.wbl-error {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 120px 16px;
+  color: var(--wbl-color-text-muted);
+  font-size: 18px;
+  text-align: center;
+}
+
 /* ===== Mobile (Responsive) */
 @media (max-width: 767px) {
   welcome-bonus {
