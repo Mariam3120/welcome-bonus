@@ -24,7 +24,7 @@ welcome-bonus {
   --wbl-color-slots-bg: #2f062e;
   --wbl-color-rule: #13081e;
 
-  --wbl-radius-card: 24px;
+  --wbl-radius-card: 40px;
   --wbl-radius-small: 12px;
   --wbl-container: 1120px;
   --wbl-font: "Noto Sans Ambassadori", "Noto Sans Georgian", "Noto Sans", Arial, sans-serif;
@@ -97,7 +97,10 @@ welcome-bonus img {
   line-height: 0.9;
   text-decoration: none;
   white-space: nowrap;
-  transition: filter 0.2s ease;
+  transition: filter 0.15s ease, transform 0.15s;
+}
+.wbl-button:active {
+  transform: scale(0.99);
 }
 
 .wbl-button:hover {
@@ -195,6 +198,142 @@ welcome-bonus img {
   color: var(--wbl-color-text-soft);
 }
 
+/* ============Sections and cards */
+.wbl-section {
+  margin-bottom: 64px;
+}
+
+.wbl-section__title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.wbl-card {
+  padding: 24px;
+  border: 1px solid var(--wbl-color-card-border);
+  border-radius: var(--wbl-radius-card);
+  background: var(--wbl-color-card);
+}
+
+.wbl-card__heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+/* =================Freespins block (register / deposit) */
+.wbl-freespins {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.wbl-freespins__count {
+  flex: none;
+  background: var(--wbl-gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.wbl-freespins__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wbl-freespins__label {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.wbl-freespins__game {
+  color: var(--wbl-color-text-muted);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+/* ==========Register info  */
+.wbl-register {
+  display: grid;
+  grid-template-columns: minmax(0, 577px) 1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.wbl-register__image {
+  width: 100%;
+  aspect-ratio: 577 / 325;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.wbl-register__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+/* ==============Deposit  */
+.wbl-deposit .wbl-card__heading {
+  text-align: center;
+}
+
+.wbl-deposit__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 24px 0 32px;
+}
+
+/* ==========deposit table */
+.wbl-tiers {
+  width: calc(100% + 16px);
+  margin: -8px;
+  border-collapse: separate;
+  border-spacing: 8px;
+  table-layout: fixed;
+  font-size: 15px;
+  text-align: center;
+}
+
+.wbl-tiers th,
+.wbl-tiers td {
+  height: 30px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: var(--wbl-color-row);
+}
+
+.wbl-tiers th {
+  background: var(--wbl-color-pink);
+  font-weight: 500;
+}
+
+.wbl-tiers td:last-child {
+  font-weight: 700;
+}
+
+.wbl-tiers__row--top td {
+  background: var(--wbl-color-row-top);
+}
+
+.wbl-tiers__row--top .wbl-tiers__reward {
+  background: var(--wbl-gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 
 /* ===== Mobile (Responsive) */

@@ -106,7 +106,8 @@ function renderDeposit(deposit, labels, number) {
     return `
       <tr class="${index === lastIndex ? 'wbl-tiers__row--top' : ''}">
         <td>${escapeHtml(amount)}</td>
-        <td>${escapeHtml(tier.freespins)} ${escapeHtml(labels.fs)}</td>
+        <td><span class="wbl-tiers__reward">${escapeHtml(tier.freespins)} ${escapeHtml(labels.fs)}</span>
+        </td>
       </tr>`;
   }).join('');
 
