@@ -33,6 +33,30 @@ function applyGeorgianCaps(root) {
   });
 }
 
+// COUNTDOWN timer
+const SECOND = 1000;
+const MINUTE = 60 * SECOND;
+const HOUR = 60 * MINUTE;
+const DAY = 24 * HOUR;
+
+// Time left until endsAt, split into units. An invalid date counts as ended.
+function getTimeLeft(endsAt, now = Date.now()) {
+  const end = Date.parse(endsAt);
+  const total = Number.isFinite(end) ? Math.max(end - now, 0) : 0;
+
+  return {
+    total,
+    days: Math.floor(total / DAY),
+    hours: Math.floor((total % DAY) / HOUR),
+    minutes: Math.floor((total % HOUR) / MINUTE),
+    seconds: Math.floor((total % MINUTE) / SECOND),
+  };
+}
+
+// 5 -> "05"
+function pad(number) {
+  return String(number).padStart(2, '0');
+}
 
 //icnons
 const plusIcon = `
@@ -203,13 +227,13 @@ function renderProgress(missions, labels) {
 
 }
 
-function renderSlots(slots) {
+function renderSlots(slots, label) {
   const items = slots.map((slot) => `
     <li class="wbl-slots__item">
       <img class="wbl-slots__image" src="${escapeHtml(slot.image)}" alt="${escapeHtml(slot.name)}" loading="lazy">
     </li>`).join('');
 
-  return `<ul class="wbl-slots">${items}</ul>`;
+    return `<ul class="wbl-slots" tabindex="0" aria-label="${escapeHtml(label)}">${items}</ul>`;
 }
 
 function renderMissions(missions, labels, number) {
@@ -220,7 +244,7 @@ function renderMissions(missions, labels, number) {
         <h3 class="wbl-card__heading" data-caps>${highlight(missions.title, missions.titleHighlight)}</h3>
         ${renderCountdown(labels)}
         ${renderProgress(missions, labels)}
-        ${renderSlots(missions.slots)}
+        ${renderSlots(missions.slots, labels.slots)}
         <a class="wbl-button wbl-button--pink" data-caps href="${escapeHtml(missions.buttonUrl)}">${escapeHtml(missions.button)}</a>
       </div>
     </section>`;
@@ -276,8 +300,48 @@ class WelcomeBonus extends HTMLElement {
         ${renderRules(data.rules, labels)}
       </div>`;
       applyGeorgianCaps(this);
+      this.startCountdown(data.endsAt, labels);
+
 
   }
+    startCountdown(endsAt, labels) {
+    this.stopCountdown();
+
+    const values = this.querySelectorAll('[data-unit]');
+    const label = this.querySelector('[data-countdown-label]');
+
+    // Updates the numbers; returns false when the promotion has ended
+    const tick = () => {
+      const timeLeft = getTimeLeft(endsAt);
+
+      values.forEach((element) => {
+        element.textContent = pad(timeLeft[element.dataset.unit]);
+      });
+
+      if (timeLeft.total === 0) {
+        // toUpperCase() because the label is a [data-caps] element
+        label.textContent = labels.countdownEnded.toUpperCase();
+        return false;
+      }
+      return true;
+    };
+
+    if (tick()) {
+      this.timerId = setInterval(() => {
+        if (!tick()) this.stopCountdown();
+      }, SECOND);
+    }
+  }
+
+  stopCountdown() {
+    clearInterval(this.timerId);
+    this.timerId = null;
+  }
+
+  disconnectedCallback() {
+    this.stopCountdown();
+  }
+
 }
 
 customElements.define('welcome-bonus', WelcomeBonus);

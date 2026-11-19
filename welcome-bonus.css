@@ -34,7 +34,6 @@ welcome-bonus {
   --wbl-gradient-progress: linear-gradient(90deg, #782a6e, #b53c91);
   --wbl-color-slots-bg: #2f062e;
   --wbl-color-rule: #13081e;
-  --wbl-color-gold: #fae301;
   --wbl-color-badge-border: #9b9b9b;
   --wbl-color-border-soft: rgb(73 23 144 / 0.2);
   --wbl-gradient-slots-border: linear-gradient(
@@ -545,14 +544,51 @@ welcome-bonus img {
   padding: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1px solid transparent;
   background:
     linear-gradient(var(--wbl-color-slots-bg), var(--wbl-color-slots-bg))
       padding-box,
     var(--wbl-gradient-slots-border) border-box;
-  scrollbar-color: var(--wbl-color-pink) transparent;
+  scroll-padding-inline: 12px;
   scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+/* Scrollbar is invisible until hover */
+.wbl-slots:hover,
+.wbl-slots:focus-visible {
+  scrollbar-color: var(--wbl-color-pink) transparent;
+}
+
+/* Safari */
+.wbl-slots::-webkit-scrollbar {
+  height: 6px;
+}
+
+.wbl-slots::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: transparent;
+}
+
+.wbl-slots:hover::-webkit-scrollbar-thumb {
+  background: var(--wbl-color-pink);
+}
+
+/* Touch screens swipe so they don't need scrollbar */
+@media (pointer: coarse) {
+  .wbl-slots {
+    scrollbar-width: none;
+  }
+
+  .wbl-slots::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.wbl-slots:focus-visible {
+  outline: 2px solid var(--wbl-color-text);
+  outline-offset: 3px;
 }
 
 .wbl-slots__item {
