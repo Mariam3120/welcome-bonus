@@ -199,10 +199,15 @@ function renderProgress(missions, labels) {
   const { current, currency } = missions.progress;
   const max = Math.max(...missions.milestones.map((m) => m.amount));
 
+  // No milestones (or invalid amounts): nothing to show
+  if (!(max > 0)) return "";
+
+  // Keep the bar inside the track even if the data is out of range
+  const value = Math.min(Math.max(current, 0), max);
   //last milestone sits at 95% so the track continues a bit past it (as design)
   const SCALE_END = 95;
   const toPercent = (amount) => (amount / max) * SCALE_END;
-  const percent = current >= max ? 100 : toPercent(current);
+  const percent = value >= max ? 100 : toPercent(value);
 
   const amounts = missions.milestones
     .map(
@@ -242,10 +247,12 @@ function renderProgress(missions, labels) {
            aria-label="${escapeHtml(labels.progress)}"
            aria-valuemin="0"
            aria-valuemax="${max}"
-           aria-valuenow="${current}">
+           aria-valuenow="${value}">
         <div class="wbl-progress__fill" style="width: ${percent}%"></div>
         ${ticks}
-        <span class="wbl-progress__badge" style="left: ${percent}%">+${formatNumber(current)}${escapeHtml(currency)}</span>
+        <span class="wbl-progress__badge" style="left: ${percent}%">+${formatNumber(
+          Math.max(current, 0),
+        )}${escapeHtml(currency)}</span>
       </div>
 
       <div class="wbl-progress__row">
@@ -313,6 +320,7 @@ class WelcomeBonus extends HTMLElement {
         throw new Error(`HTTP ${response.status}`);
       }
       const data = await response.json();
+      if (!this.isConnected) return; // element was removed while loading
       this.render(data);
     } catch (error) {
       console.error("Could not load campaign:", error);
