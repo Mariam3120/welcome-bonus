@@ -14,7 +14,7 @@ function highlight(text, part) {
   const safeText = escapeHtml(text);
   if (!part || !text.includes(part)) return safeText;
   const safePart = escapeHtml(part);
-  return safeText.replace(safePart, () => `<em class="wb-accent">${safePart}</em>`);
+  return safeText.replace(safePart, () => `<em class="wbl-accent">${safePart}</em>`);
 }
 
 // for formatting number -> "1 000"
@@ -36,13 +36,13 @@ function applyGeorgianCaps(root) {
 
 //icnons
 const plusIcon = `
-  <svg class="wb-icon" viewBox="0 0 16 16" aria-hidden="true">
+  <svg class="wbl-icon" viewBox="0 0 16 16" aria-hidden="true">
     <circle cx="8" cy="8" r="8" fill="currentColor"/>
     <path d="M8 4.5v7M4.5 8h7" stroke="#0f9d2a" stroke-width="2" stroke-linecap="round"/>
   </svg>`;
 
 const chevronIcon = `
-  <svg class="wb-icon wb-rule__chevron" viewBox="0 0 16 16" aria-hidden="true">
+  <svg class="wbl-icon wbl-rule__chevron" viewBox="0 0 16 16" aria-hidden="true">
     <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`;
 
@@ -51,44 +51,44 @@ const chevronIcon = `
 
 function renderHero(hero) {
   return `
-    <section class="wb-hero">
-      <h2 class="wb-hero__title" data-caps>${highlight(hero.title, hero.titleHighlight)}</h2>
-      <p class="wb-hero__subtitle">${escapeHtml(hero.subtitle)}</p>
+    <section class="wbl-hero">
+      <h2 class="wbl-hero__title" data-caps>${highlight(hero.title, hero.titleHighlight)}</h2>
+      <p class="wbl-hero__subtitle">${escapeHtml(hero.subtitle)}</p>
     </section>`;
 }
 
 //-here starts 4 summary cards 
 function renderSummary(items) {
   const cards = items.map((item) => `
-    <li class="wb-summary__item ${item.highlighted ? 'wb-summary__item--highlighted' : ''}">
-      <strong class="wb-summary__value">${escapeHtml(item.value)}</strong>
-      <span class="wb-summary__label" data-caps>${escapeHtml(item.label)}</span>
+    <li class="wbl-summary__item ${item.highlighted ? 'wbl-summary__item--highlighted' : ''}">
+      <strong class="wbl-summary__value">${escapeHtml(item.value)}</strong>
+      <span class="wbl-summary__label" data-caps>${escapeHtml(item.label)}</span>
     </li>`).join('');
 
-  return `<ul class="wb-summary">${cards}</ul>`;
+  return `<ul class="wbl-summary">${cards}</ul>`;
 }
 //1.freespins block (register + deposit)
 function renderFreespins(count, game, labels) {
   return `
-    <div class="wb-freespins">
-      <span class="wb-freespins__count">${escapeHtml(count)}</span>
-      <span class="wb-freespins__info">
-        <span class="wb-freespins__label">${escapeHtml(labels.freespin)}</span>
-        <span class="wb-freespins__game">${escapeHtml(game)}</span>
+    <div class="wbl-freespins">
+      <span class="wbl-freespins__count">${escapeHtml(count)}</span>
+      <span class="wbl-freespins__info">
+        <span class="wbl-freespins__label">${escapeHtml(labels.freespin)}</span>
+        <span class="wbl-freespins__game">${escapeHtml(game)}</span>
       </span>
     </div>`;
 }
 
 function renderRegister(register, labels, number) {
   return `
-    <section class="wb-section">
-      <h2 class="wb-section__title">${number}. ${escapeHtml(register.title)}</h2>
-      <div class="wb-card wb-register">
-        <img class="wb-register__image" src="${escapeHtml(register.image)}" alt="${escapeHtml(register.game)}">
-        <div class="wb-register__content">
-          <h3 class="wb-card__heading" data-caps>${escapeHtml(register.text)}</h3>
+    <section class="wbl-section">
+      <h2 class="wbl-section__title">${number}. ${escapeHtml(register.title)}</h2>
+      <div class="wbl-card wbl-register">
+        <img class="wbl-register__image" src="${escapeHtml(register.image)}" alt="${escapeHtml(register.game)}">
+        <div class="wbl-register__content">
+          <h3 class="wbl-card__heading" data-caps>${escapeHtml(register.text)}</h3>
           ${renderFreespins(register.freespins, register.game, labels)}
-          <a class="wb-button wb-button--green" data-caps href="${escapeHtml(register.url)}">${escapeHtml(register.button)}</a>
+          <a class="wbl-button wbl-button--green" data-caps href="${escapeHtml(register.url)}">${escapeHtml(register.button)}</a>
         </div>
       </div>
     </section>`;
@@ -104,22 +104,22 @@ function renderDeposit(deposit, labels, number) {
       : `${tier.from} - ${tier.to} ${deposit.currency}`;
 
     return `
-      <tr class="${index === lastIndex ? 'wb-tiers__row--top' : ''}">
+      <tr class="${index === lastIndex ? 'wbl-tiers__row--top' : ''}">
         <td>${escapeHtml(amount)}</td>
         <td>${escapeHtml(tier.freespins)} ${escapeHtml(labels.fs)}</td>
       </tr>`;
   }).join('');
 
   return `
-    <section class="wb-section">
-      <h2 class="wb-section__title">${number}. ${escapeHtml(deposit.title)}</h2>
-      <div class="wb-card wb-deposit">
-        <h3 class="wb-card__heading" data-caps>${escapeHtml(deposit.text)}</h3>
-        <div class="wb-deposit__row">
+    <section class="wbl-section">
+      <h2 class="wbl-section__title">${number}. ${escapeHtml(deposit.title)}</h2>
+      <div class="wbl-card wbl-deposit">
+        <h3 class="wbl-card__heading" data-caps>${escapeHtml(deposit.text)}</h3>
+        <div class="wbl-deposit__row">
           ${renderFreespins(deposit.freespins, deposit.game, labels)}
-          <a class="wb-button wb-button--green" data-caps href="${escapeHtml(deposit.url)}">${escapeHtml(deposit.button)} ${plusIcon}</a>
+          <a class="wbl-button wbl-button--green" data-caps href="${escapeHtml(deposit.url)}">${escapeHtml(deposit.button)} ${plusIcon}</a>
         </div>
-        <table class="wb-tiers">
+        <table class="wbl-tiers">
           <thead>
             <tr>
               <th scope="col">${escapeHtml(labels.tierAmount)}</th>
@@ -137,15 +137,15 @@ function renderCountdown(labels) {
   const units = ['days', 'hours', 'minutes', 'seconds'];
 
   const cells = units.map((unit) => `
-    <span class="wb-countdown__unit">
-      <span class="wb-countdown__value" data-unit="${unit}">00</span>
-      <span class="wb-countdown__name">${escapeHtml(labels[unit])}</span>
-    </span>`).join('<span class="wb-countdown__separator" aria-hidden="true">:</span>');
+    <span class="wbl-countdown__unit">
+      <span class="wbl-countdown__value" data-unit="${unit}">00</span>
+      <span class="wbl-countdown__name">${escapeHtml(labels[unit])}</span>
+    </span>`).join('<span class="wbl-countdown__separator" aria-hidden="true">:</span>');
 
   return `
-    <div class="wb-countdown" role="timer">
-      <span class="wb-countdown__label" data-countdown-label>${escapeHtml(labels.countdownTitle)}</span>
-      <div class="wb-countdown__units">${cells}</div>
+    <div class="wbl-countdown" role="timer">
+      <span class="wbl-countdown__label" data-countdown-label>${escapeHtml(labels.countdownTitle)}</span>
+      <div class="wbl-countdown__units">${cells}</div>
     </div>`;
 }
 
@@ -155,59 +155,59 @@ function renderProgress(missions, labels) {
   const percent = Math.min((current / max) * 100, 100);
 
   const amounts = missions.milestones.map((m) => `
-    <span class="wb-progress__mark" style="left: ${(m.amount / max) * 100}%">
+    <span class="wbl-progress__mark" style="left: ${(m.amount / max) * 100}%">
       ${formatNumber(m.amount)}${escapeHtml(currency)}
     </span>`).join('');
 
   const rewards = missions.milestones.map((m) => `
-    <span class="wb-progress__mark" style="left: ${(m.amount / max) * 100}%">
+    <span class="wbl-progress__mark" style="left: ${(m.amount / max) * 100}%">
       ${escapeHtml(m.reward)}
-      <img class="wb-progress__icon" src="${escapeHtml(m.rewardIcon)}" alt="${escapeHtml(labels.fs)}">
+      <img class="wbl-progress__icon" src="${escapeHtml(m.rewardIcon)}" alt="${escapeHtml(labels.fs)}">
     </span>`).join('');
 
   const ticks = missions.milestones.map((m) => `
-    <span class="wb-progress__tick" style="left: ${(m.amount / max) * 100}%"></span>`).join('');
+    <span class="wbl-progress__tick" style="left: ${(m.amount / max) * 100}%"></span>`).join('');
 
   return `
-    <div class="wb-progress">
-      <span class="wb-progress__label">${escapeHtml(labels.progress)}</span>
-      <div class="wb-progress__marks">${amounts}</div>
+    <div class="wbl-progress">
+      <span class="wbl-progress__label">${escapeHtml(labels.progress)}</span>
+      <div class="wbl-progress__marks">${amounts}</div>
 
-      <div class="wb-progress__track"
+      <div class="wbl-progress__track"
            role="progressbar"
            aria-label="${escapeHtml(labels.progress)}"
            aria-valuemin="0"
            aria-valuemax="${max}"
            aria-valuenow="${current}">
-        <div class="wb-progress__fill" style="width: ${percent}%"></div>
+        <div class="wbl-progress__fill" style="width: ${percent}%"></div>
         ${ticks}
-        <span class="wb-progress__badge" style="left: ${percent}%">+${formatNumber(current)}${escapeHtml(currency)}</span>
+        <span class="wbl-progress__badge" style="left: ${percent}%">+${formatNumber(current)}${escapeHtml(currency)}</span>
       </div>
 
-      <span class="wb-progress__label">${escapeHtml(labels.reward)}</span>
-      <div class="wb-progress__marks">${rewards}</div>
+      <span class="wbl-progress__label">${escapeHtml(labels.reward)}</span>
+      <div class="wbl-progress__marks">${rewards}</div>
     </div>`;
 }
 
 function renderSlots(slots) {
   const items = slots.map((slot) => `
-    <li class="wb-slots__item">
-      <img class="wb-slots__image" src="${escapeHtml(slot.image)}" alt="${escapeHtml(slot.name)}" loading="lazy">
+    <li class="wbl-slots__item">
+      <img class="wbl-slots__image" src="${escapeHtml(slot.image)}" alt="${escapeHtml(slot.name)}" loading="lazy">
     </li>`).join('');
 
-  return `<ul class="wb-slots">${items}</ul>`;
+  return `<ul class="wbl-slots">${items}</ul>`;
 }
 
 function renderMissions(missions, labels, number) {
   return `
-    <section class="wb-section">
-      <h2 class="wb-section__title">${number}. ${escapeHtml(missions.sectionTitle)}</h2>
-      <div class="wb-card wb-missions">
-        <h3 class="wb-card__heading" data-caps>${highlight(missions.title, missions.titleHighlight)}</h3>
+    <section class="wbl-section">
+      <h2 class="wbl-section__title">${number}. ${escapeHtml(missions.sectionTitle)}</h2>
+      <div class="wbl-card wbl-missions">
+        <h3 class="wbl-card__heading" data-caps>${highlight(missions.title, missions.titleHighlight)}</h3>
         ${renderCountdown(labels)}
         ${renderProgress(missions, labels)}
         ${renderSlots(missions.slots)}
-        <a class="wb-button wb-button--pink" data-caps href="${escapeHtml(missions.buttonUrl)}">${escapeHtml(missions.button)}</a>
+        <a class="wbl-button wbl-button--pink" data-caps href="${escapeHtml(missions.buttonUrl)}">${escapeHtml(missions.button)}</a>
       </div>
     </section>`;
 }
@@ -215,14 +215,14 @@ function renderMissions(missions, labels, number) {
 // rules section
 function renderRules(rules, labels) {
   const items = rules.map((rule) => `
-    <details class="wb-rule">
-      <summary class="wb-rule__title">${escapeHtml(rule.title)} ${chevronIcon}</summary>
-      <p class="wb-rule__body">${escapeHtml(rule.body)}</p>
+    <details class="wbl-rule">
+      <summary class="wbl-rule__title">${escapeHtml(rule.title)} ${chevronIcon}</summary>
+      <p class="wbl-rule__body">${escapeHtml(rule.body)}</p>
     </details>`).join('');
 
   return `
-    <section class="wb-section wb-rules">
-      <h2 class="wb-rules__title" data-caps>${escapeHtml(labels.rulesTitle)}</h2>
+    <section class="wbl-section wbl-rules">
+      <h2 class="wbl-rules__title" data-caps>${escapeHtml(labels.rulesTitle)}</h2>
       ${items}
     </section>`;
 }
@@ -248,12 +248,12 @@ class WelcomeBonus extends HTMLElement {
   render(data) {
     const { labels } = data;
 
-    this.style.setProperty('--wb-bg-desktop', `url("${data.background.imageDesktop}")`);
-    this.style.setProperty('--wb-bg-mobile', `url("${data.background.imageMobile}")`);
+    this.style.setProperty('--wbl-bg-desktop', `url("${data.background.imageDesktop}")`);
+    this.style.setProperty('--wbl-bg-mobile', `url("${data.background.imageMobile}")`);
 
     this.innerHTML = `
-      <div class="wb-hero-space" aria-hidden="true"></div>
-      <div class="wb-container">
+      <div class="wbl-hero-space" aria-hidden="true"></div>
+      <div class="wbl-container">
         ${renderHero(data.hero)}
         ${renderSummary(data.summary)}
         ${renderRegister(data.register, labels, 1)}

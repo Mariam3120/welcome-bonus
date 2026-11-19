@@ -1,43 +1,43 @@
 /* ========== Colors and main styles */
 welcome-bonus {
-  --wb-color-page: #0b0112;
-  --wb-color-card: hsl(270deg 82% 9.4% / 0.5);
-  --wb-color-card-border: #491790;
-  --wb-gradient-summary: linear-gradient(275deg, #260943 0.06%, #1d0238 76.29%);
-  --wb-color-pink: #cf167d;
-  --wb-color-accent: #ed198f;
-  --wb-gradient-green: linear-gradient(163.37deg, #009927 48%, #0c872c 94.6%);
-  --wb-gradient-pink: linear-gradient(163.37deg, #cf167d 52.73%, #790847 99.34%);
-  --wb-gradient-gold: linear-gradient(90deg, #eb7a01 0%, #fbed01 100%);
-  --wb-glow-gold: drop-shadow(0 0 4px rgb(241 167 1 / 0.7));
-  --wb-color-text: #f5f7f9;
-  --wb-color-text-muted: #cacaca;
-  --wb-color-text-label: #a89cb3;
-  --wb-color-text-soft: rgb(255 255 255 / 0.6);
-  --wb-color-row: #300858;
-  --wb-color-row-top: #400b76;
-  --wb-color-panel: #140127;
-  --wb-color-countdown: #3d1d5d;
-  --wb-color-track: #371a54;
-  --wb-gradient-progress: linear-gradient(90deg, #782a6e, #b53c91);
-  --wb-color-badge: #dadada;
-  --wb-color-slots-bg: #2f062e;
-  --wb-color-rule: #13081e;
+  --wbl-color-page: #0b0112;
+  --wbl-color-card: hsl(270deg 82% 9.4% / 0.5);
+  --wbl-color-card-border: #491790;
+  --wbl-gradient-summary: linear-gradient(275deg, #260943 0.06%, #1d0238 76.29%);
+  --wbl-color-pink: #cf167d;
+  --wbl-color-accent: #ed198f;
+  --wbl-gradient-green: linear-gradient(163.37deg, #009927 48%, #0c872c 94.6%);
+  --wbl-gradient-pink: linear-gradient(163.37deg, #cf167d 52.73%, #790847 99.34%);
+  --wbl-gradient-gold: linear-gradient(90deg, #eb7a01 0%, #fbed01 100%);
+  --wbl-glow-gold: drop-shadow(0 0 4px rgb(241 167 1 / 0.7));
+  --wbl-color-text: #f5f7f9;
+  --wbl-color-text-muted: #cacaca;
+  --wbl-color-text-label: #a89cb3;
+  --wbl-color-text-soft: rgb(255 255 255 / 0.6);
+  --wbl-color-row: #300858;
+  --wbl-color-row-top: #400b76;
+  --wbl-color-panel: #140127;
+  --wbl-color-countdown: #3d1d5d;
+  --wbl-color-track: #371a54;
+  --wbl-gradient-progress: linear-gradient(90deg, #782a6e, #b53c91);
+  --wbl-color-badge: #dadada;
+  --wbl-color-slots-bg: #2f062e;
+  --wbl-color-rule: #13081e;
 
-  --wb-radius-card: 24px;
-  --wb-radius-small: 12px;
-  --wb-container: 1120px;
-  --wb-font: "Noto Sans Ambassadori", "Noto Sans Georgian", "Noto Sans", Arial, sans-serif;
+  --wbl-radius-card: 24px;
+  --wbl-radius-small: 12px;
+  --wbl-container: 1120px;
+  --wbl-font: "Noto Sans Ambassadori", "Noto Sans Georgian", "Noto Sans", Arial, sans-serif;
 
   display: block;
   min-height: 100vh;
-  background-color: var(--wb-color-page);
-  background-image: var(--wb-bg-desktop);
+  background-color: var(--wbl-color-page);
+  background-image: var(--wbl-bg-desktop);
   background-position: top center;
   background-size: 100% auto;
   background-repeat: no-repeat;
-  color: var(--wb-color-text);
-  font-family: var(--wb-font);
+  color: var(--wbl-color-text);
+  font-family: var(--wbl-font);
   line-height: 1.4;
 }
 
@@ -65,23 +65,23 @@ welcome-bonus img {
 }
 
 /* ======Layout starts here */
-.wb-hero-space {
+.wbl-hero-space {
   aspect-ratio: 1920 / 830;
 }
 
-.wb-container {
-  max-width: calc(var(--wb-container) + 32px);
+.wbl-container {
+  max-width: calc(var(--wbl-container) + 32px);
   margin: 0 auto;
   padding: 0 16px 80px;
 }
 
-.wb-accent {
-  color: var(--wb-color-accent);
+.wbl-accent {
+  color: var(--wbl-color-accent);
   font-style: normal;
 }
 
 /* =============== Buttons */
-.wb-button {
+.wbl-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -100,56 +100,56 @@ welcome-bonus img {
   transition: filter 0.2s ease;
 }
 
-.wb-button:hover {
+.wbl-button:hover {
   filter: brightness(1.12);
 }
 
-.wb-button:focus-visible {
-  outline: 2px solid var(--wb-color-text);
+.wbl-button:focus-visible {
+  outline: 2px solid var(--wbl-color-text);
   outline-offset: 3px;
 }
 
-.wb-button--green {
-  background: var(--wb-gradient-green);
+.wbl-button--green {
+  background: var(--wbl-gradient-green);
 }
 
-.wb-button--pink {
-  background: var(--wb-gradient-pink);
+.wbl-button--pink {
+  background: var(--wbl-gradient-pink);
 }
 
-.wb-icon {
+.wbl-icon {
   flex: none;
   width: 16px;
   height: 16px;
 }
 
 /* =============HERO styles start here */
-.wb-hero {
+.wbl-hero {
   margin-bottom: 56px;
   text-align: center;
 }
 
-.wb-hero__title {
+.wbl-hero__title {
   font-size: 32px;
   font-weight: 800;
   line-height: 1.2;
 }
 
-.wb-hero__subtitle {
+.wbl-hero__subtitle {
   max-width: 760px;
   margin: 12px auto 0;
-  color: var(--wb-color-text-muted);
+  color: var(--wbl-color-text-muted);
   font-size: 20px;
 }
 
 /* ======= Summary cards styles start here */
-.wb-summary {
+.wbl-summary {
   display: flex;
   gap: 16px;
   margin-bottom: 56px;
 }
 
-.wb-summary__item {
+.wbl-summary__item {
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
@@ -159,40 +159,40 @@ welcome-bonus img {
   min-height: 118px;
   padding: 16px;
   border-radius: 18px;
-  background: var(--wb-gradient-summary);
+  background: var(--wbl-gradient-summary);
   text-align: center;
 }
 
-.wb-summary__value {
-  background: var(--wb-gradient-gold);
+.wbl-summary__value {
+  background: var(--wbl-gradient-gold);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: var(--wb-glow-gold);
+  filter: var(--wbl-glow-gold);
   font-size: 32px;
   font-weight: 800;
   line-height: 1.1;
 }
 
-.wb-summary__label {
-  color: var(--wb-color-text-label);
+.wbl-summary__label {
+  color: var(--wbl-color-text-label);
   font-size: 18px;
   font-weight: 700;
 }
 
-.wb-summary__item--highlighted {
+.wbl-summary__item--highlighted {
   flex-grow: 0.7;
-  background: var(--wb-color-pink);
+  background: var(--wbl-color-pink);
 }
 
-.wb-summary__item--highlighted .wb-summary__value {
+.wbl-summary__item--highlighted .wbl-summary__value {
   background: none;
-  color: var(--wb-color-text);
+  color: var(--wbl-color-text);
   filter: none;
 }
 
-.wb-summary__item--highlighted .wb-summary__label {
-  color: var(--wb-color-text-soft);
+.wbl-summary__item--highlighted .wbl-summary__label {
+  color: var(--wbl-color-text-soft);
 }
 
 
@@ -200,6 +200,6 @@ welcome-bonus img {
 /* ===== Mobile (Responsive) */
 @media (max-width: 767px) {
   welcome-bonus {
-    background-image: var(--wb-bg-mobile);
+    background-image: var(--wbl-bg-mobile);
   }
 }
