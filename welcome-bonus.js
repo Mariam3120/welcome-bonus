@@ -25,7 +25,7 @@ function formatNumber(number) {
 // text transform uppercase doesn't change Geo
 // this is another helper function to convert letters
 function applyGeorgianCaps(root) {
-  root.querySelectorAll('.wb-caps').forEach((element) => {
+    root.querySelectorAll('[data-caps]').forEach((element) => {
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
     while (walker.nextNode()) {
       walker.currentNode.nodeValue = walker.currentNode.nodeValue.toUpperCase();
@@ -52,7 +52,7 @@ const chevronIcon = `
 function renderHero(hero) {
   return `
     <section class="wb-hero">
-      <h2 class="wb-hero__title wb-caps">${highlight(hero.title, hero.titleHighlight)}</h2>
+      <h2 class="wb-hero__title" data-caps>${highlight(hero.title, hero.titleHighlight)}</h2>
       <p class="wb-hero__subtitle">${escapeHtml(hero.subtitle)}</p>
     </section>`;
 }
@@ -62,7 +62,7 @@ function renderSummary(items) {
   const cards = items.map((item) => `
     <li class="wb-summary__item ${item.highlighted ? 'wb-summary__item--highlighted' : ''}">
       <strong class="wb-summary__value">${escapeHtml(item.value)}</strong>
-      <span class="wb-summary__label wb-caps">${escapeHtml(item.label)}</span>
+      <span class="wb-summary__label" data-caps>${escapeHtml(item.label)}</span>
     </li>`).join('');
 
   return `<ul class="wb-summary">${cards}</ul>`;
@@ -86,9 +86,9 @@ function renderRegister(register, labels, number) {
       <div class="wb-card wb-register">
         <img class="wb-register__image" src="${escapeHtml(register.image)}" alt="${escapeHtml(register.game)}">
         <div class="wb-register__content">
-          <h3 class="wb-card__heading wb-caps">${escapeHtml(register.text)}</h3>
+          <h3 class="wb-card__heading" data-caps>${escapeHtml(register.text)}</h3>
           ${renderFreespins(register.freespins, register.game, labels)}
-          <a class="wb-button wb-button--green wb-caps" href="${escapeHtml(register.url)}">${escapeHtml(register.button)}</a>
+          <a class="wb-button wb-button--green" data-caps href="${escapeHtml(register.url)}">${escapeHtml(register.button)}</a>
         </div>
       </div>
     </section>`;
@@ -114,10 +114,10 @@ function renderDeposit(deposit, labels, number) {
     <section class="wb-section">
       <h2 class="wb-section__title">${number}. ${escapeHtml(deposit.title)}</h2>
       <div class="wb-card wb-deposit">
-        <h3 class="wb-card__heading wb-caps">${escapeHtml(deposit.text)}</h3>
+        <h3 class="wb-card__heading" data-caps>${escapeHtml(deposit.text)}</h3>
         <div class="wb-deposit__row">
           ${renderFreespins(deposit.freespins, deposit.game, labels)}
-          <a class="wb-button wb-button--green wb-caps" href="${escapeHtml(deposit.url)}">${escapeHtml(deposit.button)} ${plusIcon}</a>
+          <a class="wb-button wb-button--green" data-caps href="${escapeHtml(deposit.url)}">${escapeHtml(deposit.button)} ${plusIcon}</a>
         </div>
         <table class="wb-tiers">
           <thead>
@@ -203,11 +203,11 @@ function renderMissions(missions, labels, number) {
     <section class="wb-section">
       <h2 class="wb-section__title">${number}. ${escapeHtml(missions.sectionTitle)}</h2>
       <div class="wb-card wb-missions">
-        <h3 class="wb-card__heading wb-caps">${highlight(missions.title, missions.titleHighlight)}</h3>
+        <h3 class="wb-card__heading" data-caps>${highlight(missions.title, missions.titleHighlight)}</h3>
         ${renderCountdown(labels)}
         ${renderProgress(missions, labels)}
         ${renderSlots(missions.slots)}
-        <a class="wb-button wb-button--pink wb-caps" href="${escapeHtml(missions.buttonUrl)}">${escapeHtml(missions.button)}</a>
+        <a class="wb-button wb-button--pink" data-caps href="${escapeHtml(missions.buttonUrl)}">${escapeHtml(missions.button)}</a>
       </div>
     </section>`;
 }
@@ -222,7 +222,7 @@ function renderRules(rules, labels) {
 
   return `
     <section class="wb-section wb-rules">
-      <h2 class="wb-rules__title wb-caps">${escapeHtml(labels.rulesTitle)}</h2>
+      <h2 class="wb-rules__title" data-caps>${escapeHtml(labels.rulesTitle)}</h2>
       ${items}
     </section>`;
 }
