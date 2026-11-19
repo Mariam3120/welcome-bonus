@@ -506,7 +506,7 @@ welcome-bonus img {
   background: var(--wbl-gradient-progress);
 }
 
-/* tick lines go behind the badge(z-index) and comes out the badge by -12px, both sides like ruler */
+/* tick lines go behind the track(z-index) and comes out the badge by -12px, both sides like ruler */
 .wbl-progress__tick {
   position: absolute;
   z-index: -1;
@@ -743,7 +743,7 @@ welcome-bonus img {
 
   .wbl-register .wbl-button,
   .wbl-deposit .wbl-button {
-    align-self: center; 
+    align-self: center;
   }
 
   /* Deposit */

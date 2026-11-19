@@ -1,12 +1,11 @@
 // ========Helper functions
-
 function escapeHtml(value) {
-  return String(value ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 // to wrap highlighted(pink) part of title in semantic em
@@ -14,18 +13,21 @@ function highlight(text, part) {
   const safeText = escapeHtml(text);
   if (!part || !text.includes(part)) return safeText;
   const safePart = escapeHtml(part);
-  return safeText.replace(safePart, () => `<em class="wbl-accent">${safePart}</em>`);
+  return safeText.replace(
+    safePart,
+    () => `<em class="wbl-accent">${safePart}</em>`,
+  );
 }
 
 // for formatting number -> "1 000"
 function formatNumber(number) {
-  return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+  return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
 }
 
 // text transform uppercase doesn't change Geo
 // this is another helper function to convert letters
 function applyGeorgianCaps(root) {
-    root.querySelectorAll('[data-caps]').forEach((element) => {
+  root.querySelectorAll("[data-caps]").forEach((element) => {
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
     while (walker.nextNode()) {
       walker.currentNode.nodeValue = walker.currentNode.nodeValue.toUpperCase();
@@ -39,7 +41,7 @@ const MINUTE = 60 * SECOND;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
 
-// Time left until endsAt, split into units. An invalid date counts as ended.
+// Time left until endsAt, split into units
 function getTimeLeft(endsAt, now = Date.now()) {
   const end = Date.parse(endsAt);
   const total = Number.isFinite(end) ? Math.max(end - now, 0) : 0;
@@ -55,10 +57,10 @@ function getTimeLeft(endsAt, now = Date.now()) {
 
 // 5 -> "05"
 function pad(number) {
-  return String(number).padStart(2, '0');
+  return String(number).padStart(2, "0");
 }
 
-//icnons
+//icons
 const plusIcon = `
   <svg class="wbl-icon" viewBox="0 0 16 16" aria-hidden="true">
     <circle cx="8" cy="8" r="8" fill="currentColor"/>
@@ -72,7 +74,6 @@ const chevronIcon = `
 
 // ============Section templates
 //-here starts hero -
-
 function renderHero(hero) {
   return `
     <section class="wbl-hero">
@@ -81,13 +82,17 @@ function renderHero(hero) {
     </section>`;
 }
 
-//-here starts 4 summary cards 
+//-here starts 4 summary cards
 function renderSummary(items) {
-  const cards = items.map((item) => `
-    <li class="wbl-summary__item ${item.highlighted ? 'wbl-summary__item--highlighted' : ''}">
+  const cards = items
+    .map(
+      (item) => `
+    <li class="wbl-summary__item ${item.highlighted ? "wbl-summary__item--highlighted" : ""}">
       <strong class="wbl-summary__value">${escapeHtml(item.value)}</strong>
       <span class="wbl-summary__label" data-caps>${escapeHtml(item.label)}</span>
-    </li>`).join('');
+    </li>`,
+    )
+    .join("");
 
   return `<ul class="wbl-summary">${cards}</ul>`;
 }
@@ -127,22 +132,25 @@ function renderRegister(register, labels, number) {
     </section>`;
 }
 
-//2. deposit 
+//2. deposit
 function renderDeposit(deposit, labels, number) {
   const lastIndex = deposit.tiers.length - 1;
 
-  const rows = deposit.tiers.map((tier, index) => {
-    const amount = tier.to === null
-      ? `${tier.from}${deposit.currency} ${labels.tierOrMore}`
-      : `${tier.from} - ${tier.to} ${deposit.currency}`;
+  const rows = deposit.tiers
+    .map((tier, index) => {
+      const amount =
+        tier.to === null
+          ? `${tier.from}${deposit.currency} ${labels.tierOrMore}`
+          : `${tier.from} - ${tier.to} ${deposit.currency}`;
 
-    return `
-      <tr class="${index === lastIndex ? 'wbl-tiers__row--top' : ''}">
+      return `
+      <tr class="${index === lastIndex ? "wbl-tiers__row--top" : ""}">
         <td>${escapeHtml(amount)}</td>
         <td><span class="wbl-tiers__reward">${escapeHtml(tier.freespins)} ${escapeHtml(labels.fs)}</span>
         </td>
       </tr>`;
-  }).join('');
+    })
+    .join("");
 
   return `
     <section class="wbl-section">
@@ -168,13 +176,17 @@ function renderDeposit(deposit, labels, number) {
 
 //3. COUNTDOWN, progress and slots
 function renderCountdown(labels) {
-  const units = ['days', 'hours', 'minutes', 'seconds'];
+  const units = ["days", "hours", "minutes", "seconds"];
 
-  const cells = units.map((unit) => `
+  const cells = units
+    .map(
+      (unit) => `
     <span class="wbl-countdown__unit">
       <span class="wbl-countdown__value" data-unit="${unit}">00</span>
       <span class="wbl-countdown__name">${escapeHtml(labels[unit])}</span>
-    </span>`).join('<span class="wbl-countdown__separator" aria-hidden="true">:</span>');
+    </span>`,
+    )
+    .join('<span class="wbl-countdown__separator" aria-hidden="true">:</span>');
 
   return `
     <div class="wbl-countdown" role="timer">
@@ -184,33 +196,41 @@ function renderCountdown(labels) {
 }
 
 function renderProgress(missions, labels) {
-  // const { current, currency } = missions.progress;
-  // const max = Math.max(...missions.milestones.map((m) => m.amount));
-  // const percent = Math.min((current / max) * 100, 100);
   const { current, currency } = missions.progress;
   const max = Math.max(...missions.milestones.map((m) => m.amount));
 
-  // The last milestone sits at 95%, so the track continues a bit past it (as in the design)
+  //last milestone sits at 95% so the track continues a bit past it (as design)
   const SCALE_END = 95;
   const toPercent = (amount) => (amount / max) * SCALE_END;
   const percent = current >= max ? 100 : toPercent(current);
 
-
-  const amounts = missions.milestones.map((m) => `
+  const amounts = missions.milestones
+    .map(
+      (m) => `
     <span class="wbl-progress__mark" style="left: ${toPercent(m.amount)}%">
       ${formatNumber(m.amount)}${escapeHtml(currency)}
-    </span>`).join('');
+    </span>`,
+    )
+    .join("");
 
-  const rewards = missions.milestones.map((m) => `
+  const rewards = missions.milestones
+    .map(
+      (m) => `
     <span class="wbl-progress__mark" style="left: ${toPercent(m.amount)}%">
       <span class="wbl-progress__reward">${escapeHtml(m.reward)}</span>
       <img class="wbl-progress__icon" src="${escapeHtml(m.rewardIcon)}" alt="${escapeHtml(labels.fs)}">
-    </span>`).join('');
+    </span>`,
+    )
+    .join("");
 
-  const ticks = missions.milestones.map((m) => `
-    <span class="wbl-progress__tick" style="left: ${toPercent(m.amount)}%"></span>`).join('');
+  const ticks = missions.milestones
+    .map(
+      (m) => `
+    <span class="wbl-progress__tick" style="left: ${toPercent(m.amount)}%"></span>`,
+    )
+    .join("");
 
-   return `
+  return `
     <div class="wbl-progress">
       <div class="wbl-progress__row">
         <span class="wbl-progress__label" data-caps>${escapeHtml(labels.progress)}</span>
@@ -233,16 +253,19 @@ function renderProgress(missions, labels) {
         <div class="wbl-progress__marks wbl-progress__marks--rewards">${rewards}</div>
       </div>
     </div>`;
-
 }
 
 function renderSlots(slots, label) {
-  const items = slots.map((slot) => `
+  const items = slots
+    .map(
+      (slot) => `
     <li class="wbl-slots__item">
       <img class="wbl-slots__image" src="${escapeHtml(slot.image)}" alt="${escapeHtml(slot.name)}" loading="lazy">
-    </li>`).join('');
+    </li>`,
+    )
+    .join("");
 
-    return `<ul class="wbl-slots" tabindex="0" aria-label="${escapeHtml(label)}">${items}</ul>`;
+  return `<ul class="wbl-slots" tabindex="0" aria-label="${escapeHtml(label)}">${items}</ul>`;
 }
 
 function renderMissions(missions, labels, number) {
@@ -261,11 +284,15 @@ function renderMissions(missions, labels, number) {
 
 // rules section
 function renderRules(rules, labels) {
-  const items = rules.map((rule) => `
+  const items = rules
+    .map(
+      (rule) => `
     <details class="wbl-rule">
       <summary class="wbl-rule__title">${escapeHtml(rule.title)} ${chevronIcon}</summary>
       <p class="wbl-rule__body">${escapeHtml(rule.body)}</p>
-    </details>`).join('');
+    </details>`,
+    )
+    .join("");
 
   return `
     <section class="wbl-section wbl-rules">
@@ -278,7 +305,7 @@ function renderRules(rules, labels) {
 
 class WelcomeBonus extends HTMLElement {
   async connectedCallback() {
-    const src = this.getAttribute('src');
+    const src = this.getAttribute("src");
 
     try {
       const response = await fetch(src);
@@ -288,7 +315,7 @@ class WelcomeBonus extends HTMLElement {
       const data = await response.json();
       this.render(data);
     } catch (error) {
-      console.error('Could not load campaign:', error);
+      console.error("Could not load campaign:", error);
       this.renderError();
     }
   }
@@ -296,8 +323,14 @@ class WelcomeBonus extends HTMLElement {
   render(data) {
     const { labels } = data;
 
-    this.style.setProperty('--wbl-bg-desktop', `url("${data.background.imageDesktop}")`);
-    this.style.setProperty('--wbl-bg-mobile', `url("${data.background.imageMobile}")`);
+    this.style.setProperty(
+      "--wbl-bg-desktop",
+      `url("${data.background.imageDesktop}")`,
+    );
+    this.style.setProperty(
+      "--wbl-bg-mobile",
+      `url("${data.background.imageMobile}")`,
+    );
 
     this.innerHTML = `
       <div class="wbl-hero-space" aria-hidden="true"></div>
@@ -309,25 +342,23 @@ class WelcomeBonus extends HTMLElement {
         ${renderMissions(data.missions, labels, 3)}
         ${renderRules(data.rules, labels)}
       </div>`;
-      applyGeorgianCaps(this);
-      this.startCountdown(data.endsAt, labels);
-
-
+    applyGeorgianCaps(this);
+    this.startCountdown(data.endsAt, labels);
   }
 
   renderError() {
-    const message = this.getAttribute('error-text');
+    const message = this.getAttribute("error-text");
     if (!message) return;
 
     this.innerHTML = `<p class="wbl-error" role="alert">${escapeHtml(message)}</p>`;
   }
-    startCountdown(endsAt, labels) {
+  startCountdown(endsAt, labels) {
     this.stopCountdown();
 
-    const values = this.querySelectorAll('[data-unit]');
-    const label = this.querySelector('[data-countdown-label]');
+    const values = this.querySelectorAll("[data-unit]");
+    const label = this.querySelector("[data-countdown-label]");
 
-    // Updates the numbers; returns false when the promotion has ended
+    // Updates the numbers; returns false when promotion has ended
     const tick = () => {
       const timeLeft = getTimeLeft(endsAt);
 
@@ -358,8 +389,6 @@ class WelcomeBonus extends HTMLElement {
   disconnectedCallback() {
     this.stopCountdown();
   }
-
 }
 
-customElements.define('welcome-bonus', WelcomeBonus);
-
+customElements.define("welcome-bonus", WelcomeBonus);
