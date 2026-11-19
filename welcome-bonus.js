@@ -103,10 +103,19 @@ function renderFreespins(count, game, labels) {
     </div>`;
 }
 
+// -1.title side by side so line aligns with the text, not the number
+function renderSectionTitle(number, title) {
+  return `
+    <h2 class="wbl-section__title">
+      <span class="wbl-section__number">${number}.</span>
+      <span>${escapeHtml(title)}</span>
+    </h2>`;
+}
+
 function renderRegister(register, labels, number) {
   return `
     <section class="wbl-section">
-      <h2 class="wbl-section__title">${number}. ${escapeHtml(register.title)}</h2>
+      ${renderSectionTitle(number, register.title)}
       <div class="wbl-card wbl-register">
         <img class="wbl-register__image" src="${escapeHtml(register.image)}" alt="${escapeHtml(register.game)}">
         <div class="wbl-register__content">
@@ -137,7 +146,7 @@ function renderDeposit(deposit, labels, number) {
 
   return `
     <section class="wbl-section">
-      <h2 class="wbl-section__title">${number}. ${escapeHtml(deposit.title)}</h2>
+      ${renderSectionTitle(number, deposit.title)}
       <div class="wbl-card wbl-deposit">
         <h3 class="wbl-card__heading" data-caps>${escapeHtml(deposit.text)}</h3>
         <div class="wbl-deposit__row">
@@ -239,7 +248,7 @@ function renderSlots(slots, label) {
 function renderMissions(missions, labels, number) {
   return `
     <section class="wbl-section">
-      <h2 class="wbl-section__title">${number}. ${escapeHtml(missions.sectionTitle)}</h2>
+      ${renderSectionTitle(number, missions.sectionTitle)}
       <div class="wbl-card wbl-missions">
         <h3 class="wbl-card__heading" data-caps>${highlight(missions.title, missions.titleHighlight)}</h3>
         ${renderCountdown(labels)}
