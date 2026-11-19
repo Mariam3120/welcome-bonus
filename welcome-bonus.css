@@ -244,8 +244,10 @@ welcome-bonus img {
 
 .wbl-freespins__info {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
+  min-width: 0;
 }
 
 .wbl-freespins__label {
@@ -286,6 +288,7 @@ welcome-bonus img {
 /* ==============Deposit  */
 .wbl-deposit .wbl-card__heading {
   text-align: center;
+  text-wrap: wrap;
 }
 
 .wbl-deposit__row {
@@ -299,9 +302,9 @@ welcome-bonus img {
 /* ==========deposit table */
 .wbl-tiers {
   width: calc(100% + 16px);
-  margin: -8px;
+  margin: -6px;
   border-collapse: separate;
-  border-spacing: 8px;
+  border-spacing: 6px;
   table-layout: fixed;
   font-size: 15px;
   text-align: center;
